@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-// // Абстрактный базовый класс "Ингредиент"
+// // ГЂГЎГ±ГІГ°Г ГЄГІГ­Г»Г© ГЎГ Г§Г®ГўГ»Г© ГЄГ«Г Г±Г± "Г€Г­ГЈГ°ГҐГ¤ГЁГҐГ­ГІ"
 public class Ingredient
 {
 public string Name { get; set; }
@@ -12,7 +12,7 @@ public double Quantity { get; set; }
 
 public Ingredient(string name, double costPer100g, double quantity)
 {
-Name = name;
+Name = null;
 CostPer100g = costPer100g;
 Quantity = quantity;
 }
@@ -23,7 +23,7 @@ return CostPer100g * Quantity / 100;
 }
 }
 
-// класс салат наследует от ингредиенты
+// ГЄГ«Г Г±Г± Г±Г Г«Г ГІ Г­Г Г±Г«ГҐГ¤ГіГҐГІ Г®ГІ ГЁГ­ГЈГ°ГҐГ¤ГЁГҐГ­ГІГ»
 public class Salad // 
 {
 private List<Ingredient> Ingredients { get; set; }
@@ -32,11 +32,11 @@ public Salad()
 {
 Ingredients = new List<Ingredient>
 {
-new Ingredient("Tomato", 1.5, 200), // томат
-new Ingredient("Cucumber", 1.0, 150), // огурец
-new Ingredient("Onion", 0.5, 50), // лук
-new Ingredient("Olive Oil", 2.0, 30), // оливки
-new Ingredient("Salt", 0.1, 5) // соль
+new Ingredient("Tomato", 1.5, 200), // ГІГ®Г¬Г ГІ
+new Ingredient("Cucumber", 1.0, 150), // Г®ГЈГіГ°ГҐГ¶
+new Ingredient("Onion", 0.5, 50), // Г«ГіГЄ
+new Ingredient("Olive Oil", 2.0, 30), // Г®Г«ГЁГўГЄГЁ
+new Ingredient("Salt", 0.1, 5) // Г±Г®Г«Гј
 };
 }
 
