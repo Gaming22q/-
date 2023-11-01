@@ -2,52 +2,56 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-
-// // Àáñòðàêòíûé áàçîâûé êëàññ "Èíãðåäèåíò"
-public class Ingredient
+public abstract class SportsEquipment
 {
-public string Name { get; set; }
-public double CostPer100g { get; set; }
-public double Quantity { get; set; }
-
-public Ingredient(string name, double costPer100g, double quantity)
-{
-Name = null;
-CostPer100g = costPer100g;
-Quantity = quantity;
+    public string LoadType { get; set; }
+    public decimal Mass { get; set; }
 }
 
-public double GetCost()
+public interface IEnergyConsuming
 {
-return CostPer100g * Quantity / 100;
-}
-}
-
-// êëàññ ñàëàò íàñëåäóåò îò èíãðåäèåíòû
-public class Salad // 
-{
-private List<Ingredient> Ingredients { get; set; }
-
-public Salad()
-{
-Ingredients = new List<Ingredient>
-{
-new Ingredient("Tomato", 1.5, 200), // òîìàò
-new Ingredient("Cucumber", 1.0, 150), // îãóðåö
-new Ingredient("Onion", 0.5, 50), // ëóê
-new Ingredient("Olive Oil", 2.0, 30), // îëèâêè
-new Ingredient("Salt", 0.1, 5) // ñîëü
-};
+    decimal Voltage { get; set; }
 }
 
-public double GetCost()
+public class Treadmill : SportsEquipment, IEnergyConsuming
 {
-return Ingredients.Sum(i => i.GetCost());
+    public decimal Length { get; set; }
+    public List<string> Modes { get; set; }
+    public decimal Voltage { get; set; }
 }
 
-public override string ToString()
+public class ExerciseBike : SportsEquipment, IEnergyConsuming
 {
-var ingredients = string.Join(", ", Ingredients.Select(i => i.Name));
-return $"{ingredients}, {GetCost()}";
+    public List<string> Modes { get; set; }
+    public decimal Voltage { get; set; }
 }
+
+public class Bench : SportsEquipment
+{
+    public decimal MaxUserWeight { get; set; }
+    public decimal Incline { get; set; }
+}
+
+public class RomanChair : SportsEquipment
+{
+    public decimal Incline { get; set; }
+    public decimal Dimensions { get; set; }
+}
+
+public class PullUpBar : SportsEquipment
+{
+    public bool HasBar { get; set; }
+    public bool HasParallelBars { get; set; }
+}
+
+public void CheckName(string name)
+{
+    if (string.IsNullOrEmpty(name))
+    {
+        Console.WriteLine("The name is either null or empty.");
+    }
+    else
+    {
+        Console.WriteLine($"The name is: {name}");
+    }
 }
