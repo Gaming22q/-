@@ -1,60 +1,40 @@
 using System;
 using System.Collections.Generic;
 
-public class Hero<TArmor, TWeapon>
-    where TArmor : Armor
-    where TWeapon : Weapon
+// Обобщенный класс-наследник обобщенной коллекции указанного типа
+public class CustomList<T> : List<T>
 {
-    public List<TArmor> Armor { get; set; }
-    public List<TWeapon> Weapons { get; set; }
-
-    public Hero(List<TArmor> armor, List<TWeapon> weapons)
+    // Метод, вычисляющий суммарную длину строк в списке
+    public int TotalLengthOfStrings()
     {
-        Armor = armor;
-        Weapons = weapons;
-    }
-
-    public void PrintEquipment()
-    {
-        Console.WriteLine("Hero's equipment:");
-        Console.WriteLine("Armor:");
-        foreach (var armor in Armor)
+        int totalLength = 0;
+        foreach (var item in this)
         {
-            Console.WriteLine(armor.Name);
+            if (item is string str)
+            {
+                totalLength += str.Length;
+            }
         }
-
-        Console.WriteLine("Weapons:");
-        foreach (var weapon in Weapons)
-        {
-            Console.WriteLine(weapon.Name);
-        }
+        return totalLength;
     }
 }
 
-public class Armor
+class Program
 {
-    public string Name { get; set; }
-}
-
-public class Weapon
-{
-    public string Name { get; set; }
-}
-
-public class Program
-{
-    public static void Main(string[] args)
+    static void Main(string[] args)
     {
-        // Создание экземпляров доспехов и оружия
-        var armor1 = new Armor { Name = "Plate Armor" };
-        var armor2 = new Armor { Name = "Leather Armor" };
-        var weapon1 = new Weapon { Name = "Sword" };
-        var weapon2 = new Weapon { Name = "Bow" };
+        // Создание экземпляра обобщенного класса
+        CustomList<string> stringList = new CustomList<string>();
 
-        // Создание экземпляра героя с передачей доспехов и оружия в конструктор
-        var hero = new Hero<Armor, Weapon>(new List<Armor> { armor1, armor2 }, new List<Weapon> { weapon1, weapon2 });
+        // Заполнение списка пятью элементами типа string
+        stringList.Add("Hello");
+        stringList.Add("World");
+        stringList.Add("C#");
 
-        // Вывод списка вооружения героя
-        hero.PrintEquipment();
+        // Вызов метода для вычисления суммарной длины строк в списке
+        int totalLength = stringList.TotalLengthOfStrings();
+
+        // Вывод результата в консоль
+        Console.WriteLine($"Суммарная длина строк в списке: {totalLength}");
     }
 }
