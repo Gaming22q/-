@@ -29,7 +29,9 @@ class Program
         // Заполнение списка пятью элементами типа string
         stringList.Add("Hello");
         stringList.Add("World");
-        stringList.Add("C#");
+        stringList.Add("I");
+        stringList.Add("Love");
+        stringList.Add("You");
 
         // Вызов метода для вычисления суммарной длины строк в списке
         int totalLength = stringList.TotalLengthOfStrings();
